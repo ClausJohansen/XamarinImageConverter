@@ -105,7 +105,7 @@ namespace ImageConverter
                 txtWidth.Text = image.TargetWidth.ToString();
                 txtHeight.Text = image.TargetHeight.ToString();
 
-                if (image.resizeBy == ImageConversionOptions.Width)
+                if (image.ResizeBy == ImageConversionOptions.Width)
                 {
                     rbWidth.IsChecked = true;
                     txtWidth.IsEnabled = true;
@@ -147,14 +147,14 @@ namespace ImageConverter
 
         private void rbWidth_Checked(object sender, RoutedEventArgs e)
         {
-            selectedImage.resizeBy = ImageConversionOptions.Width;
+            selectedImage.ResizeBy = ImageConversionOptions.Width;
             txtWidth.IsEnabled = true;
             txtHeight.IsEnabled = false;
         }
 
         private void rbHeight_Checked(object sender, RoutedEventArgs e)
         {
-            selectedImage.resizeBy = ImageConversionOptions.Height;
+            selectedImage.ResizeBy = ImageConversionOptions.Height;
             txtWidth.IsEnabled = false;
             txtHeight.IsEnabled = true;
         }
@@ -214,7 +214,7 @@ namespace ImageConverter
                 {
                     ImageConversion listedImage = (ImageConversion)control;
 
-                    listedImage.resizeBy = selectedImage.resizeBy;
+                    listedImage.ResizeBy = selectedImage.ResizeBy;
                     listedImage.TargetWidth = selectedImage.TargetWidth;
                     listedImage.TargetHeight = selectedImage.TargetHeight;
                     listedImage.TargetResolution = selectedImage.TargetResolution;

@@ -2,6 +2,7 @@
 using ImageConverter.Entities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,11 @@ namespace ImageConverter
             foreach(ImageConversion image in queue)
             {
                 //TODO: Async / await
+
+
                 HdpiFactorResult factor;
 
-                if (image.resizeBy == ImageConversionOptions.Width)
+                if (image.ResizeBy == ImageConversionOptions.Width)
                 {
                     factor = CalculateFactor(image.TargetWidth, image.TargetResolution);
                 }
@@ -27,6 +30,17 @@ namespace ImageConverter
                 {
                     factor = CalculateFactor(image.TargetHeight, image.TargetResolution);
                 }
+
+                if(image.TargetResolution == TargetResolutionOptions.Hdpi)
+                {
+                    Bitmap hdpiBitmap = new Bitmap(image.SourceFile.FullName);
+                    Bitmap xhdpiBitmap = hdpiBitmap.
+
+                }
+
+                
+
+
                 
 
                 // if(image.resizeBy = Im)
@@ -51,23 +65,23 @@ namespace ImageConverter
                 case TargetResolutionOptions.Hdpi:
 
                     result.HdpiSize = source;
-                    result.XhdpiSize = source * 1.333;
+                    result.XhdpiSize = (int)Math.Round(source * 1.3333);
                     result.XxhdpiSize = source * 2;
 
                     break;
 
                 case TargetResolutionOptions.Xhdpi:
 
-                    result.HdpiSize = source * 0.75;
+                    result.HdpiSize = (int)Math.Round(source * 0.75);
                     result.XhdpiSize = source;
-                    result.XxhdpiSize = source * 1.5;
+                    result.XxhdpiSize = (int)Math.Round(source * 1.5);
 
                     break;
 
                 case TargetResolutionOptions.Xxhdpi:
 
-                    result.HdpiSize = source * 0.5;
-                    result.XhdpiSize = source * 0.66;
+                    result.HdpiSize = (int) Math.Round(source * 0.5);
+                    result.XhdpiSize = (int)Math.Round(source * 0.6666);
                     result.XxhdpiSize = source;
 
                     break;
@@ -76,6 +90,8 @@ namespace ImageConverter
 
                     throw new Exception("CalculateFactor: Not a valid resolution");
             }
+
+            return result;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ImageConverter.Entities
     {
         public FileInfo SourceFile { get; }
         public string TargetName { get; set; }
-        public ImageConversionOptions resizeBy { get; set; }
+        public ImageConversionOptions ResizeBy { get; set; }
         public int TargetWidth { get; set; }
         public int TargetHeight { get; set; }
         public TargetResolutionOptions TargetResolution { get; set; }
@@ -23,7 +23,7 @@ namespace ImageConverter.Entities
         public ImageConversion(FileInfo sourceFile)
         {
             this.SourceFile = sourceFile;
-            resizeBy = ImageConversionOptions.Width;
+            ResizeBy = ImageConversionOptions.Width;
         }
 
 
