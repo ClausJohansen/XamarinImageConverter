@@ -14,7 +14,8 @@ namespace ImageConverter.Entities
         public int TargetWidth { get; set; }
         public int TargetHeight { get; set; }
         public TargetResolutionOptions TargetResolution { get; set; }
-
+        public bool Crop { get; internal set; }
+        public int CropSize { get; set; }
 
         /// <summary>
         /// Constructor: Create a new ImageConversion instance.

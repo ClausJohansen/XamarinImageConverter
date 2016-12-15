@@ -59,12 +59,10 @@
     </ApplicationDefinition>
     <Compile Include="ConvertException.cs" />
     <Compile Include="Enms\TargetResolutionOptions.cs" />
+    <Compile Include="Entities\ConversionDestination.cs" />
     <Compile Include="Entities\HdpiFactorResult.cs" />
     <Compile Include="Entities\TargetResolution.cs" />
     <Compile Include="ImageProcessor.cs" />
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,10 +77,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -4,8 +4,10 @@ namespace ImageConverter.Enms
 {
     public enum TargetResolutionOptions
     {
+        Mdpi,
         Hdpi,
         Xhdpi,
-        Xxhdpi
+        Xxhdpi,
+        Xxxhdpi,
     }
 }

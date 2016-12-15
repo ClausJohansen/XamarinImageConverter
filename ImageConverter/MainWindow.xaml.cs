@@ -46,12 +46,17 @@ namespace ImageConverter
 
             drpResolution.ItemsSource = new List<TargetResolution> 
             {
+                new TargetResolution { Name = "MDPI",   Value = TargetResolutionOptions.Mdpi },
                 new TargetResolution { Name = "HDPI",   Value = TargetResolutionOptions.Hdpi },
                 new TargetResolution { Name = "XHDPI",  Value = TargetResolutionOptions.Xhdpi },
-                new TargetResolution { Name = "XXHDPI", Value = TargetResolutionOptions.Xxhdpi }
+                new TargetResolution { Name = "XXHDPI", Value = TargetResolutionOptions.Xxhdpi },
+                new TargetResolution { Name = "XXXHDPI", Value = TargetResolutionOptions.Xxxhdpi }
             };
 
-            drpResolution.SelectedIndex = 1;
+            drpResolution.SelectedIndex = 2; //TODO: What should be defa◄lt?
+
+            txtProjectDirectory.Text = Properties.Settings.Default.ProjectDirectory;
+            projectDirectory = new DirectoryInfo(Properties.Settings.Default.ProjectDirectory);
         }
 
 
@@ -218,6 +223,8 @@ namespace ImageConverter
                     listedImage.TargetWidth = selectedImage.TargetWidth;
                     listedImage.TargetHeight = selectedImage.TargetHeight;
                     listedImage.TargetResolution = selectedImage.TargetResolution;
+                    listedImage.Crop = selectedImage.Crop;
+                    listedImage.CropSize = selectedImage.CropSize;
                 }
             }
         }
@@ -225,11 +232,14 @@ namespace ImageConverter
         private void btnSetProjectDirectory_Click(object sender, RoutedEventArgs e)
         {
             var directoryPicker = new System.Windows.Forms.FolderBrowserDialog();
+            directoryPicker.SelectedPath = Properties.Settings.Default.ProjectDirectory;
             System.Windows.Forms.DialogResult result = directoryPicker.ShowDialog();
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 projectDirectory = new DirectoryInfo(directoryPicker.SelectedPath);
+                Properties.Settings.Default.ProjectDirectory = projectDirectory.FullName;
+                Properties.Settings.Default.Save();
                 txtProjectDirectory.Text = projectDirectory.FullName;
             }
         }
@@ -284,6 +294,36 @@ namespace ImageConverter
 
                 lbSourceFiles.Items.Add(conversion);
             }
+        }
+
+        private void cbCrop_Checked(object sender, RoutedEventArgs e)
+        {
+            txtCropValue.IsEnabled = true;
+            selectedImage.Crop = true;
+        }
+
+        private void cbCrop_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtCropValue.IsEnabled = false;
+            selectedImage.Crop = false;
+        }
+
+        private void txtCropValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                selectedImage.CropSize = int.Parse(txtCropValue.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Crop image: Enter a pixel val]e in numbers");
+            }
+        }
+
+        private void txtCropValue_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                e.Handled = true;
         }
     }
 }

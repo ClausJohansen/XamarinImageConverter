@@ -27,7 +27,7 @@
                         <TextBox x:Name="tbTargetName" Height="23" Canvas.Left="167" Canvas.Top="29" Width="275"/>
                     </Canvas>
                 </GroupBox>
-                <GroupBox x:Name="grpFileRezie" Header="Image resize options" Canvas.Top="97" Height="144" Width="464" HorizontalAlignment="Stretch" Canvas.Left="10">
+                <GroupBox x:Name="grpFileRezie" Header="Image resize options" Canvas.Top="97" Height="179" Width="464" HorizontalAlignment="Stretch" Canvas.Left="10">
                     <Canvas>
                         <Label x:Name="label3" Content="Resize by:" Width="67"/>
                         <RadioButton x:Name="rbWidth" Content="Width  - Resize to" GroupName="grpResizeBy" Canvas.Left="169" Canvas.Top="9" Checked="rbWidth_Checked"/>
@@ -37,13 +37,16 @@
                         <Label x:Name="label4" Content="pixels" Width="47" Canvas.Left="405" Canvas.Top="3"/>
                         <Label x:Name="label5" Content="pixels" Canvas.Left="405" Canvas.Top="26" Width="47"/>
                         <ComboBox x:Name="drpResolution" Canvas.Left="169" Canvas.Top="57" Width="275" SelectionChanged="drpResolution_SelectionChanged"/>
-                        <Label x:Name="label" Content="Target resolution:" Canvas.Top="53" Width="164"/>
-                        <Button x:Name="btnChangeAll" Content="Use these resize options for entire queue" Canvas.Left="169" Canvas.Top="99" Width="275" Click="btnChangeAll_Click"/>
+                        <Label x:Name="label6" Content="Target resolution:" Canvas.Top="53" Width="164"/>
+                        <Button x:Name="btnChangeAll" Content="Use these resize options for entire queue" Canvas.Left="169" Canvas.Top="130" Width="275" Click="btnChangeAll_Click"/>
+                        <CheckBox x:Name="cbCrop" Content="Crop Image by" Canvas.Left="169" Canvas.Top="93" RenderTransformOrigin="0.493,2" Unchecked="cbCrop_Unchecked" Checked="cbCrop_Checked"/>
+                        <TextBox x:Name="txtCropValue" Canvas.Left="287" Canvas.Top="90" Width="113" TextChanged="txtCropValue_TextChanged" PreviewTextInput="txtCropValue_PreviewTextInput" />
+                        <Label x:Name="label7" Content="pixels" Canvas.Top="84" Width="47" Canvas.Left="405"/>
                     </Canvas>
                 </GroupBox>
 
             </Canvas>
-            <GroupBox Header="Xamarin project directory" Canvas.Left="10" Canvas.Top="246" Height="57" Width="464">
+            <GroupBox Header="Xamarin project directory" Canvas.Left="10" Canvas.Top="298" Height="57" Width="464">
                 <Canvas Margin="0,0,0,54">
                     <TextBox x:Name="txtProjectDirectory" Canvas.Left="10" Canvas.Top="10" Width="352" Height="20" />
                     <Button x:Name="btnSetProjectDirectory" Content="Browse.." Canvas.Left="367" Canvas.Top="10" Width="75" Click="btnSetProjectDirectory_Click" />
